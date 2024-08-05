@@ -1,0 +1,14 @@
+<%= link_to "マイページへ行く", user_path(current_user) %>
+<div class="content">
+  <% @items.each do |item| %>
+    <p>商品名：<%= item.name %></p>
+    <p>値段：<%= item.price %></p>
+    <% if item.item_order %>
+      <div class="sold-out">
+        <b>Sold Out!!</b>
+      </div>
+    <% else %>
+      <%= link_to "購入する", order_item_path(item.id), data: {turbo_method: :post } %>
+    <% end %>
+  <% end %>
+</div>
